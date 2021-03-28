@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Solar System using Spacekit</title>
+	<style type="text/css">
+		html,body,#main-container {
+			  width: 99.5%;
+			  height: 99.5%;
+			  min-height: 500px;
+			  background-color:black;
+			}
+	</style>
+</head>
+<body>
+	<div id="main-container"></div>
+
+	<script src="https://typpo.github.io/spacekit/build/spacekit.js"></script>
+	<script type="text/javascript">
+		const viz = new Spacekit.Simulation(document.getElementById('main-container'), {
+		  basePath: 'https://typpo.github.io/spacekit/src',
+		});
+
+		// Create a background using Yale Bright Star Catalog data.
+		viz.createStars();
+
+		// Create our first object - the sun - using a preset space object.
+		viz.createObject('sun', Spacekit.SpaceObjectPresets.SUN);
+
+		// Then add some planets
+		viz.createObject('mercury', Spacekit.SpaceObjectPresets.MERCURY);
+		viz.createObject('venus', Spacekit.SpaceObjectPresets.VENUS);
+		viz.createObject('earth', Spacekit.SpaceObjectPresets.EARTH);
+		viz.createObject('mars', Spacekit.SpaceObjectPresets.MARS);
+		viz.createObject('jupiter', Spacekit.SpaceObjectPresets.JUPITER);
+		viz.createObject('saturn', Spacekit.SpaceObjectPresets.SATURN);
+		viz.createObject('uranus', Spacekit.SpaceObjectPresets.URANUS);
+		viz.createObject('neptune', Spacekit.SpaceObjectPresets.NEPTUNE);
+
+		const roadster = viz.createObject('spaceman', {
+		  labelText: 'Tesla Roadster',
+		  ephem: new Spacekit.Ephem({
+		    // These parameters define orbit shape.
+		    a: 1.324870564730606E+00,
+		    e: 2.557785995665682E-01,
+		    i: 1.077550722804860E+00,
+		    
+		    // These parameters define the orientation of the orbit.
+		    om: 3.170946964325638E+02,
+		    w: 1.774865822248395E+02,
+		    ma: 1.764302192487955E+02,
+		    
+		    // Where the object is in its orbit.
+		    epoch: 2458426.500000000,
+		  }, 'deg'),
+		});
+	</script>
+</body>
+</html>
